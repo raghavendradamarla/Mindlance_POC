@@ -38,7 +38,7 @@ app.controller('PopulationController', function ($scope) {
 
     }
     $scope.Next = function Next() {
-        debugger;
+        
         if ($scope.end != $scope.OriginalPopulationData.length) {
             $scope.start = $scope.end;
             $scope.end = $scope.start + 10;
@@ -53,7 +53,7 @@ app.controller('PopulationController', function ($scope) {
         $scope.$apply();
     }
     $scope.Previous = function Previous() {
-        debugger;
+        
         if ($scope.end > 10) {
             $scope.end = $scope.start;
 
@@ -66,7 +66,7 @@ app.controller('PopulationController', function ($scope) {
     }
     $scope.SearchCity = function SearchCity()
     {
-        debugger;
+        
         if ($scope.SelectCity == "" || $scope.SelectCity.length>1)
             getPopulationDataByCity($scope.SelectCity);
         else
@@ -91,7 +91,7 @@ app.controller('PopulationController', function ($scope) {
     }
 
     $scope.DisplaySelectedCity = function DisplaySelectedCity(pop) {
-        debugger;
+        
         modal.style.display = "block";
         $scope.selectedCity = pop;
         $scope.modelPopulation = pop.pop;
@@ -99,14 +99,14 @@ app.controller('PopulationController', function ($scope) {
     }
 
     $scope.UpdateCity = function UpdateCity() {
-        debugger;
+        
         
         $scope.selectedCity.pop = $scope.modelPopulation;
         UpdateSelectedCity();
     }
 
     function UpdateSelectedCity() {
-        debugger;
+        
         ResetControls();
         $.ajax({
             url: 'api/CityPopulation/',
@@ -114,7 +114,7 @@ app.controller('PopulationController', function ($scope) {
             dataType: 'json',            
             data: $scope.selectedCity,
             success: function (d) {
-                debugger;
+                
                 modal.style.display = "none";                
                 alert('Population updated Successfully');
                 $scope.populations = $scope.OriginalPopulationData.slice(0, 10);                
@@ -137,7 +137,7 @@ app.controller('PopulationController', function ($scope) {
                 dataType: 'json',
                 data: { 'id': city },
                 success: function (d) {
-                    debugger;
+                    
                     if (d.length < 1)
                         alert('City Could not find in JSON file. Please try to search with valid city !!');
                     else
@@ -163,7 +163,7 @@ app.controller('PopulationController', function ($scope) {
             type: 'GET',
             dataType: 'json',
             success: function (d) {
-                debugger;             
+                             
                 $scope.populations = d;
                 $scope.OriginalPopulationData = d;
                 $scope.populations = d.slice($scope.start, $scope.end);
